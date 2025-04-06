@@ -48,6 +48,19 @@ app.delete("/users/:id", (req, res) => {
   });
 });
 
+//lihat semu data
+app.get("/users", (req, res) => {
+  const sql = "SELECT * FROM users";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("gagal mengambil data");
+    }
+    res.json(result);
+  });
+});
+
 app.listen(3000, () => {
   console.log("server berhasil berjalan di http://localhost:3000");
 });
